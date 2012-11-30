@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.os.Environment;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +18,7 @@ public class SecondAct extends Activity
 {
 	private static final String TAG = "MEDIA";
     private TextView tv;
+    private TextView tvXmlTarget;
 	private XMLParser xmlParser;
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -26,6 +26,7 @@ public class SecondAct extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_act);     
         tv = (TextView) findViewById(R.id.TextViewFs);
+        tvXmlTarget = (TextView) findViewById(R.id.tvXmlTarget);
         checkExternalMedia();
         writeToSDFile();
         readRaw();
@@ -116,6 +117,7 @@ public class SecondAct extends Activity
             e.printStackTrace();
         }
         tv.append("\n\nThat is all");
+        tvXmlTarget.append(new XMLParser().getXmlFromRawFile("orders.xml"));
     }
     
     

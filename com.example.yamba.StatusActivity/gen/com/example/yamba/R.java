@@ -20,8 +20,9 @@ public final class R {
         public static final int buttonSecondAct=0x7f080003;
         public static final int buttonUpdate=0x7f080002;
         public static final int editText=0x7f080001;
-        public static final int menu_settings=0x7f080005;
+        public static final int menu_settings=0x7f080006;
         public static final int textCount=0x7f080000;
+        public static final int tvXmlTarget=0x7f080005;
     }
     public static final class layout {
         public static final int activity_status=0x7f030000;
@@ -43,6 +44,7 @@ public final class R {
         public static final int hintText=0x7f050003;
         public static final int menu_settings=0x7f050005;
         public static final int menuitem_settings=0x7f050006;
+        public static final int strXmlTarget=0x7f05000a;
         public static final int titleStatus=0x7f050002;
         public static final int titleYamba=0x7f050001;
         public static final int title_activity_status=0x7f050007;

@@ -58,7 +58,7 @@ public class XMLParser {
         // return XML
         return xml;
     }
-	public String getXmlFromFile(String filepath) {
+	public String getXmlFromRawFile(String filepath) {
         String xml = null;
         int resId = context.getResources().getIdentifier(filepath, "raw", "com.example.yamba");
         InputStream is = context.getResources().openRawResource(resId);

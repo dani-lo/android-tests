@@ -9,4 +9,10 @@
             android:padding="5sp"
             android:id="@+id/TextViewFs"
             android:text="@string/helloFs" />
+        <TextView  
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content" 
+            android:padding="5sp"
+            android:id="@+id/tvXmlTarget"
+            android:text="@string/strXmlTarget" />
 </LinearLayout>

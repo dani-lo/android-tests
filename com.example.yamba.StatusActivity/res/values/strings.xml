@@ -10,4 +10,6 @@
 <string name="title_activity_status">Status Update</string>
 <string name="buttonSecondAct">Next screen</string>
 <string name="helloFs">FILE SYSTEM I/O</string>
+<string name="strXmlTarget">xml value here</string>
+
 </resources>
