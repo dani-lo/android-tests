@@ -117,12 +117,6 @@ public class SecondAct extends Activity
             e.printStackTrace();
         }
         tv.append("\n\nThat is all");
-        tvXmlTarget.append(new XMLParser().getXmlFromRawFile("orders.xml"));
+        tvXmlTarget.append(new XMLParser().getXmlFromRawFile("orders",getApplicationContext()));
     }
-    
-    
-    
-    
-    
-    
 }

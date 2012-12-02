@@ -30,12 +30,12 @@ import android.content.Context;
 import android.util.Log;
 
 public class XMLParser {
-	private Context context;
 	
 	public XMLParser()
 	{
-		//
+		//context = getApplicationContext();
 	}
+	
 	public String getXmlFromUrl(String url) {
         String xml = null;
  
@@ -58,8 +58,8 @@ public class XMLParser {
         // return XML
         return xml;
     }
-	public String getXmlFromRawFile(String filepath) {
-        String xml = null;
+	public String getXmlFromRawFile(String filepath, Context context) {
+		String xml = "";
         int resId = context.getResources().getIdentifier(filepath, "raw", "com.example.yamba");
         InputStream is = context.getResources().openRawResource(resId);
         InputStreamReader isr = new InputStreamReader(is);
@@ -67,7 +67,8 @@ public class XMLParser {
         
         try {
             String test;	
-            while (true){				
+            while (true){			
+            	
                 test = br.readLine();   
                 // readLine() returns null if no more lines in the file
                 if(test == null) break;
