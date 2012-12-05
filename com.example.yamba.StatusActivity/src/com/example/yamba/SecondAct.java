@@ -3,6 +3,8 @@ package com.example.yamba;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.os.Environment;
 import java.io.BufferedReader;
@@ -13,13 +15,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.xml.xpath.XPathExpressionException;
+
+import org.w3c.dom.Document;
 
 public class SecondAct extends Activity 
 {
 	private static final String TAG = "MEDIA";
     private TextView tv;
-    private TextView tvXmlTarget;
 	private XMLParser xmlParser;
+	private ListView ordersListView ;
+	private ArrayAdapter<String> listAdapter ;
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
@@ -30,6 +39,8 @@ public class SecondAct extends Activity
         checkExternalMedia();
         writeToSDFile();
         readRaw();
+        listOrders();
+        
     }
     
     /** Method to check whether external media available and writable. This is adapted from
@@ -92,6 +103,19 @@ public class SecondAct extends Activity
         tv.append("\n\nFile written to "+file);
     }
     
+    private void listOrders(){
+    	XMLParser xmlParser = new XMLParser();
+        Document xmlDoc = xmlParser.getDomElement(xmlParser.getXmlFromRawFile("orders",getApplicationContext()));          
+        ordersListView = (ListView) findViewById( R.id.listViewOrders );
+        try {         
+        	ArrayList<String> ordersList = xmlParser.xmlToArrayList(xmlDoc,"//menu/item/name/text()");
+        	listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, ordersList);
+        	ordersListView.setAdapter( listAdapter ); 
+        } catch(XPathExpressionException e) {
+        	Log.v(TAG,"XPath exception thrown here");
+        }
+    }
+    
     private void readRaw(){
         tv.append("\nData read from res/raw/textfile.txt:");
         InputStream is = this.getResources().openRawResource(R.raw.textfile);
@@ -117,6 +141,6 @@ public class SecondAct extends Activity
             e.printStackTrace();
         }
         tv.append("\n\nThat is all");
-        tvXmlTarget.append(new XMLParser().getXmlFromRawFile("orders",getApplicationContext()));
+        
     }
 }

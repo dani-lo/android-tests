@@ -15,4 +15,8 @@
             android:padding="5sp"
             android:id="@+id/tvXmlTarget"
             android:text="@string/strXmlTarget" />
+         <ListView android:layout_width="fill_parent"   
+	      android:layout_height="fill_parent"   
+	      android:id="@+id/listViewOrders"> 
+	    </ListView> 
 </LinearLayout>

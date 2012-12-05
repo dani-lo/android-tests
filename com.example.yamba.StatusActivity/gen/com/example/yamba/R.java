@@ -20,13 +20,16 @@ public final class R {
         public static final int buttonSecondAct=0x7f080003;
         public static final int buttonUpdate=0x7f080002;
         public static final int editText=0x7f080001;
-        public static final int menu_settings=0x7f080006;
+        public static final int listViewOrders=0x7f080006;
+        public static final int menu_settings=0x7f080008;
+        public static final int rowTextView=0x7f080007;
         public static final int textCount=0x7f080000;
         public static final int tvXmlTarget=0x7f080005;
     }
     public static final class layout {
         public static final int activity_status=0x7f030000;
         public static final int second_act=0x7f030001;
+        public static final int simplerow=0x7f030002;
     }
     public static final class menu {
         public static final int activity_status=0x7f070000;

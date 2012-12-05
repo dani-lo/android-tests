@@ -6,10 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
+import javax.xml.xpath.*;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -59,7 +59,7 @@ public class XMLParser {
         return xml;
     }
 	public String getXmlFromRawFile(String filepath, Context context) {
-		String xml = "";
+		StringBuilder sbTxt = new StringBuilder();
         int resId = context.getResources().getIdentifier(filepath, "raw", "com.example.yamba");
         InputStream is = context.getResources().openRawResource(resId);
         InputStreamReader isr = new InputStreamReader(is);
@@ -72,7 +72,7 @@ public class XMLParser {
                 test = br.readLine();   
                 // readLine() returns null if no more lines in the file
                 if(test == null) break;
-                xml.concat(test);
+                sbTxt.append(test);
             }
             isr.close();
             is.close();
@@ -81,7 +81,7 @@ public class XMLParser {
             e.printStackTrace();
         }
         // return XML
-        return xml;
+        return sbTxt.toString();
     }
 	
 	public Document getDomElement(String xml){
@@ -108,6 +108,22 @@ public class XMLParser {
                 // return DOM
             return doc;
     }
+	
+	public ArrayList<String> xmlToArrayList(Document doc, String xpathExpString) throws XPathExpressionException{
+		ArrayList<String> outList = new ArrayList<String>();
+		
+		XPathFactory factory = XPathFactory.newInstance();
+	    XPath xpath = factory.newXPath();
+	    XPathExpression expr = xpath.compile(xpathExpString);
+	
+	    Object result = expr.evaluate(doc, XPathConstants.NODESET);
+	    NodeList nodes = (NodeList) result;
+	    for (int i = 0; i < nodes.getLength(); i++) {
+	        outList.add(nodes.item(i).getNodeValue()); 
+	    }
+		
+		return outList;
+	}
     
     public String getValue(Element item, String str) {
         NodeList n = item.getElementsByTagName(str);
